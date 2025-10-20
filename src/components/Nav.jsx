@@ -8,27 +8,27 @@ const Nav = ({ menuClick, setMenuClick }) => {
         <div className="container">
           <ul className="navbar-nav m-auto">
             <li className="nav-item">
-              <a className="nav-link" href="/" onClick={handleMenuClick}>
+              <a className="nav-link" href="/" >
                 Home
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/animation" onClick={handleMenuClick}>
+              <a className="nav-link" href="/animation" >
                 Animation
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/calculator" onClick={handleMenuClick}>
+              <a className="nav-link" href="/calculator" >
                 Calculator
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/reactComponents" onClick={handleMenuClick}>
+              <a className="nav-link" href="/reactComponents" >
                 Component
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/todos" onClick={handleMenuClick}>
+              <a className="nav-link" href="/todos" >
                 Todos
               </a>
             </li>

@@ -11,8 +11,7 @@ const Todos = () => {
     const [numPages, setNumPages] = useState(1);
 
     useEffect(() => {
-        const data = fetchTodos();
-        setTodosRaw(data);
+        setTodosRaw(fetchTodos());
     }, []);
 
     useEffect(() => {
@@ -26,9 +25,9 @@ const Todos = () => {
         const filteredTodos = onlyWaiting
             ? todosRaw.filter(todo => !todo.completed)
             : todosRaw;
-        const startIndex = (currPage - 1) * itemsPerPage;
-        const paginatedTodos = filteredTodos.slice(startIndex, startIndex + itemsPerPage);
-        setTodos(paginatedTodos);
+        const i = (currPage - 1) * itemsPerPage;
+        const pageTodo = filteredTodos.slice(i, i + itemsPerPage);
+        setTodos(pageTodo);
     }, [todosRaw, onlyWaiting, currPage, itemsPerPage]);
 
     return (
