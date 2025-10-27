@@ -23,6 +23,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/Home" element={<Home />} />
             <Route path="/animation" element={<Animation />} />
             <Route path="/calculator" element={<Calculator />} />
             <Route path="/ReactComponents" element={<ReactComponents />} />

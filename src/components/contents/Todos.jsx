@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Form, Table, Button, Badge } from "react-bootstrap";
+import { useEffect, useRef, useState } from "react";
+import { Form, Table, Button, Badge, Modal } from "react-bootstrap";
 import fetchTodos from "../../data/todosdata";
 
 const Todos = () => {
@@ -9,6 +9,10 @@ const Todos = () => {
     const [onlyWaiting, setOnlyWaiting] = useState(false);
     const [currPage, setCurrPage] = useState(1);
     const [numPages, setNumPages] = useState(1);
+
+    const newTitleRef = useRef();
+    const newIdRef = useRef()
+
 
     useEffect(() => {
         setTodosRaw(fetchTodos());
@@ -30,6 +34,40 @@ const Todos = () => {
         setTodos(pageTodo);
     }, [todosRaw, onlyWaiting, currPage, itemsPerPage]);
 
+    const waitingClicked = (id) => {
+        console.log(id)
+        const foundTodo = todos.find((todo) => {
+            return todo.id === id
+        })
+        foundTodo.completed = true
+
+        setTodosRaw([...todosRaw])
+    }
+
+    const deleteClicked = (id) => {
+        setTodosRaw(todosRaw.filter((todo) => todo.id !== id))
+    }
+
+    const addClicked = (id, title) => {
+
+        console.log(id, title)
+        if (title.trim() !== "") {
+            setTodosRaw([...todosRaw, {
+                userId: 1,
+                id,
+                title,
+                completed: false
+            }])
+        }
+        newIdRef.current.value = ""
+        newTitleRef.current.value = ""
+        handleClose()
+    }
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
     return (
         <>
             <hr />
@@ -60,7 +98,7 @@ const Todos = () => {
                             <th style={{ width: '3rem' }}>ID</th>
                             <th>Title</th>
                             <th style={{ width: '10rem' }}>Completed</th>
-                            <th style={{ width: '3rem' }} className="fs-3"><i className="bi bi-arrow-down-square-fill"></i></th>
+                            <th style={{ width: '3rem' }}><button className="btn bg-primary w-100 text-white border-0 h-50" onClick={handleShow} >+</button></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -74,6 +112,8 @@ const Todos = () => {
                                             variant={todo.completed ? "success" : "warning"}
                                             className="border-0"
                                             style={{ height: 'fit-content' }}
+                                            value={todo.id}
+                                            onClick={() => waitingClicked(todo.id)}
                                         >
                                             {todo.completed ? "Completed " : "Waiting "}
                                             {todo.completed ? (
@@ -83,13 +123,21 @@ const Todos = () => {
                                             )}
                                         </Button>
                                     </td>
-                                    <td className="text-center"><Button variant="danger" className="border-0" style={{ height: 'fit-content' }}><i className="bi bi-trash-fill"></i></Button></td>
+                                    <td className="text-center">
+                                        <Button
+                                            variant="danger"
+                                            className="border-0"
+                                            style={{ height: 'fit-content' }}
+                                            onClick={() => deleteClicked(todo.id)}>
+                                            <i className="bi bi-trash-fill"></i>
+                                        </Button>
+                                    </td>
                                 </tr>
                             )
                         })}
                     </tbody>
                 </Table>
-            </div>
+            </div >
             <div className="d-flex justify-content-center align-items-center m-auto" style={{ width: 'fit-content', height: 'fit-content' }}>
                 <Button variant="primary" className="mx-2 h-auto" onClick={() => setCurrPage(1)} disabled={currPage === 1}>First</Button>
                 <Button variant="primary" className="mx-2 h-auto" onClick={() => setCurrPage(p => Math.max(p - 1, 1))} disabled={currPage === 1}>Previous</Button>
@@ -99,6 +147,36 @@ const Todos = () => {
                 <Button variant="primary" className="mx-2 h-auto" onClick={() => setCurrPage(p => Math.min(p + 1, numPages))} disabled={currPage === numPages}>Next</Button>
                 <Button variant="primary" className="mx-2 h-auto" onClick={() => setCurrPage(numPages)} disabled={currPage === numPages}>Last</Button>
             </div>
+
+            {/* Modal */}
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>
+                        <div className="d-flex">
+                            <Button className="btn btn-primary h-50 w-f">+</Button>
+
+                            <h3 className="w-100 align-middle">&nbsp;Add todo</h3>
+                        </div>
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form>
+                        <Form.Control className="d-flex" plaintext type="text" readOnly ref={newIdRef}
+                            value={todosRaw.reduce((p, todo) => { return p < todo.id ? todo.id : p; }, 0) + 1}>
+                        </Form.Control>
+                        <h3>Title :</h3>
+                        <input className="todo-input" defaultValue={""} type="text" name="" id="" ref={newTitleRef} />
+                    </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
+                    </Button>
+                    <Button variant="primary" onClick={() => addClicked(Number(newIdRef.current.value), newTitleRef.current.value)}>
+                        Save Changes
+                    </Button>
+                </Modal.Footer>
+            </Modal >
         </>
     );
 };

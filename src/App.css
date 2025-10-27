@@ -11,3 +11,34 @@
   box-sizing: border-box;
   letter-spacing: 1px;
 }
+
+.btn-primary:hover{
+  background-color: #0051ca!important;
+  transition: 0.2s ease-in-out 0s;
+  transform: scale(1.05);
+}
+
+.btn-secondary:hover{
+  background-color: #696c6f!important;
+  transition: 0.2s ease-in-out 0s;
+  transform: scale(1.05);
+}
+.btn-success:hover{
+  background-color: #105233!important;
+  transition: 0.2s ease-in-out 0s;
+  transform: scale(1.05);
+}
+.btn-danger:hover{
+  background-color: #681b1b!important;
+  transition: 0.2s ease-in-out 0s;
+  transform: scale(1.05);
+}
+
+.w-f{
+  width: fit-content!important;
+}
+
+.todo-input{
+  border-radius: 0px;
+  background: white;
+}
