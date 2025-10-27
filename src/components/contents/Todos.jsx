@@ -92,7 +92,7 @@ const Todos = () => {
                 </div>
             </Form >
             <div>
-                <Table striped>
+                <Table striped hover>
                     <thead className="text-center table-dark align-items-center align-middle">
                         <tr>
                             <th style={{ width: '3rem' }}>ID</th>

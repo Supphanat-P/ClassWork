@@ -42,3 +42,24 @@
   border-radius: 0px;
   background: white;
 }
+
+.h-f{
+  height: fit-content!important;
+}
+
+.nav{
+  .btn{
+    height: fit-content;
+  color: white;
+  }
+  .btn:hover{
+      background: #4a4a4a;
+      height: fit-content;
+      border: none;
+  }
+  .btn-hold{
+    background: #4a4a4a;
+    height: fit-content;
+    border: none;
+  }
+}

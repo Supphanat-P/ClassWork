@@ -10,7 +10,7 @@ const Footer = () => {
           <a className="text-white" href="https://www.spu.ac.th/fac/informatics/">SPUIT</a>
         </h1>
       </footer>
-    </> 
+    </>
   );
 };
 export default Footer;

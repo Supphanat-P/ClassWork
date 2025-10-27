@@ -5,34 +5,28 @@ import "./App.css";
 import { useState } from "react";
 
 import Animation from "./components/contents/Animation";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
 import Home from "./components/contents/Home";
-import Nav from "./components/Nav";
 import Calculator from "./components/contents/Calculator";
 import ReactComponents from "./components/contents/ReactComponents";
 import Todos from "./components/contents/Todos";
+import AppLayout from "./components/layouts/AppLayout";
+
 function App() {
-  const [value, setValue] = useState(0);
+  const [menu, setMenu] = useState(0);
 
   return (
-    <div className="d-flex flex-column min-vh-100">
-      <Header />
-      <Nav />
-      <main className="flex-grow-1">
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/Home" element={<Home />} />
-            <Route path="/animation" element={<Animation />} />
-            <Route path="/calculator" element={<Calculator />} />
-            <Route path="/ReactComponents" element={<ReactComponents />} />
-            <Route path="/Todos" element={<Todos />} />
-          </Routes>
-        </BrowserRouter>
-      </main>
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<AppLayout menu={menu} setMenu={setMenu} />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/Home" element={<Home />} />
+          <Route path="/animation" element={<Animation />} />
+          <Route path="/calculator" element={<Calculator />} />
+          <Route path="/components" element={<ReactComponents />} />
+          <Route path="/Todos" element={<Todos />} />
+        </Route>
+      </Routes>
+    </BrowserRouter >
   );
 }
 
