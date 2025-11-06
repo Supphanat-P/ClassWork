@@ -12,54 +12,78 @@
   letter-spacing: 1px;
 }
 
-.btn-primary:hover{
-  background-color: #0051ca!important;
+.btn-primary:hover {
+  background-color: #0051ca !important;
   transition: 0.2s ease-in-out 0s;
   transform: scale(1.05);
 }
 
-.btn-secondary:hover{
-  background-color: #696c6f!important;
+.btn-secondary:hover {
+  background-color: #696c6f !important;
   transition: 0.2s ease-in-out 0s;
   transform: scale(1.05);
 }
-.btn-success:hover{
-  background-color: #105233!important;
+.btn-success:hover {
+  background-color: #105233 !important;
   transition: 0.2s ease-in-out 0s;
   transform: scale(1.05);
 }
-.btn-danger:hover{
-  background-color: #681b1b!important;
+.btn-danger:hover {
+  background-color: #681b1b !important;
   transition: 0.2s ease-in-out 0s;
   transform: scale(1.05);
+}
+.btn-outline-primary:hover {
+  border-color: #0051ca !important;
+  color: white !important;
+}
+.btn-outline-secondary:hover {
+  border-color: #696c6f !important;
+  color: white !important;
 }
 
-.w-f{
-  width: fit-content!important;
+.btn-outline-success:hover {
+  border-color: #105233 !important;
+  color: #105233 !important;
+}
+.w-f {
+  width: fit-content !important;
 }
 
-.todo-input{
+.todo-input {
   border-radius: 0px;
   background: white;
 }
 
-.h-f{
-  height: fit-content!important;
+.h-f {
+  height: fit-content !important;
 }
 
-.nav{
-  .btn{
+.nav {
+  .btn {
     height: fit-content;
-  color: white;
+    color: white;
   }
-  .btn:hover{
-      background: #4a4a4a;
-      height: fit-content;
-      border: none;
-  }
-  .btn-hold{
+  .btn:hover {
     background: #4a4a4a;
     height: fit-content;
     border: none;
   }
+  .btn-hold {
+    background: #4a4a4a;
+    height: fit-content;
+    border: none;
+  }
+}
+
+.products-items-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  overflow-y: auto;
+  height: 560px;
+  justify-items: center;
+}
+.products-container {
+  text-align: center;
 }

@@ -2,12 +2,14 @@ import { useEffect, useRef } from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const AppNav = ({ menu, setMenu }) => {
+const AppNav = ({ menu, setMenu, products, carts }) => {
   const homeRef = useRef();
   const todosRef = useRef();
   const calculatorRef = useRef();
   const animationRef = useRef();
   const componentsRef = useRef();
+  const productsRef = useRef();
+  const cartsRef = useRef();
 
   useEffect(() => {
     switch (menu) {
@@ -25,6 +27,12 @@ const AppNav = ({ menu, setMenu }) => {
         break;
       case "Todos":
         todosRef.current.click();
+        break;
+      case "Products":
+        productsRef.current.click();
+        break;
+      case "Carts":
+        cartsRef.current.click();
         break;
     }
   }, [menu]);
@@ -74,6 +82,24 @@ const AppNav = ({ menu, setMenu }) => {
           onClick={() => setMenu("Todos")}
         >
           Todos
+        </Button>
+      </Link>
+      <Link to={"products"}>
+        <Button
+          variant={menu === "Products" ? "hold" : "outline-hold"}
+          ref={productsRef}
+          onClick={() => setMenu("Products")}
+        >
+          Products {products.length}
+        </Button>
+      </Link>
+      <Link to={"carts"}>
+        <Button
+          variant={menu === "Carts" ? "hold" : "outline-hold"}
+          ref={cartsRef}
+          onClick={() => setMenu("Carts")}
+        >
+          Carts {carts.length ? carts.length : 0}
         </Button>
       </Link>
     </div>
