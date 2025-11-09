@@ -103,7 +103,7 @@ const Calculator = () => {
   return (
     <div className="cal-container mb-3">
       <div className="display-screen">
-        <input readOnly value={screen} maxLength={9} id="display-input" />
+        <input readOnly value={screen} maxLength={9} id="display-input input-cal" />
         <hr />
       </div>
       <div className="display-btn">

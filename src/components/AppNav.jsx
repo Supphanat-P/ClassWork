@@ -102,6 +102,17 @@ const AppNav = ({ menu, setMenu, products, carts }) => {
           Carts {carts.length ? carts.length : 0}
         </Button>
       </Link>
+      <Link>
+        <Button
+          variant={"outline-hold"}
+          onClick={() => {
+            localStorage.removeItem("token");
+            window.location.href = "/login";
+          }}
+        >
+          Logout
+        </Button>
+      </Link>
     </div>
   );
 };
